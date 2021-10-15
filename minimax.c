@@ -64,12 +64,15 @@ int checkGlobalWin(char board[N][N], int p){
     return 0;
 }
 int score(Node* p){
+
     if (checkGlobalWin(p->board,1)){
         return -100;
     }
+
     if (checkGlobalWin(p->board,2)){
         return 100;
-    }
+    } 
+
     else{
         return rand()%100 - 50;
     }

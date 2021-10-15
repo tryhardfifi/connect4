@@ -2,9 +2,19 @@
 
 
 void printBoard(char board[N][N]){
+    printf("  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 \n");
     for(int i=N-1; i>=0; i--){
         for(int j=0; j<N; j++)
-            printf(" %d |", board[i][j]);
+            if (board[i][j] == 1){
+                printf(" 🤷 |");
+            }
+            else if (board[i][j] == 2){
+                printf(" 🤖 |");
+            }
+            else{
+                printf("    |", board[i][j]);
+                
+            }
         printf(" \n");
     }
         printf(" \n");
@@ -24,7 +34,7 @@ void initializeBoard(Node *p){
 
 int movePlayer(Node *p, int column){
 
-    if (p->board[N-1][column]==0){
+    if (p->board[N-1][column]==0 && column >= 0 && column < N){
     
         for (int i=0; i < N; i++){
             if (p->board[i][column]==0){
@@ -50,14 +60,14 @@ int main()
     printBoard(p.board);
 
 
-    int player = 0;
+    int player = 1;
     int column = 0;
 
     do {
         player = player%2 + 1;
         if (player == 1){
             do {scanf("%d", &column);}
-            while (movePlayer(&p,column)==-1);
+            while (movePlayer(&p,column-1)==-1);
         }
         if (player == 2){
             initializeRoot(&p);

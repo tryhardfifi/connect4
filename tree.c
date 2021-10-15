@@ -49,7 +49,7 @@ Node *createNode(Node *parent,int index,int level) {
     Node *p = malloc(sizeof(Node));
     copyBoard(parent,p);
     moveComputer(p,index,level%2 + 1);
-    if (level<6) {
+    if (level<7) {
         p->n_children=calculateChildren(p->board);
         p->children=malloc(p->n_children * sizeof(Node *));
     }
