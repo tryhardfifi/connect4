@@ -71,6 +71,6 @@ int score(Node* p){
         return 100;
     }
     else{
-        return 0;
+        return rand()%100 - 50;
     }
 }
