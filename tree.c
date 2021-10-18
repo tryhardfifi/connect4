@@ -45,13 +45,20 @@ void moveComputer(Node *p, int index, int player){
     }
 
 }
-Node *createNode(Node *parent,int index,int level) {
+Node *createNode(Node *parent,int index,int level, int maxlevel) {
     Node *p = malloc(sizeof(Node));
     copyBoard(parent,p);
     moveComputer(p,index,level%2 + 1);
-    if (level<7) {
-        p->n_children=calculateChildren(p->board);
-        p->children=malloc(p->n_children * sizeof(Node *));
+    if (level<maxlevel) {
+        p->value=score(p);
+        if (p->value == 100 && p->value == -100){
+            p->n_children=0;
+            p->children=malloc(p->n_children * sizeof(Node *));
+        }
+        else{
+            p->n_children=calculateChildren(p->board);
+            p->children=malloc(p->n_children * sizeof(Node *));
+        }
     }
     else {
         p->n_children=0;
@@ -73,9 +80,9 @@ void deleteTree(Node *root) {
     deleteLevel(root);
 }
 
-void createLevel(Node *parent,int level) {
+void createLevel(Node *parent,int level, int maxlevel) {
     for(int i=0;i<parent->n_children;i++){
-        parent->children[i]=createNode(parent,i,level);
+        parent->children[i]=createNode(parent,i,level,maxlevel);
     }
 }
 void initializeRoot(Node *root){
@@ -83,10 +90,10 @@ void initializeRoot(Node *root){
     root->children=malloc(root->n_children * sizeof(Node *));
 }
 
-void createTree(Node *root, int level) {
-    createLevel(root,level);
+void createTree(Node *root, int level, int maxlevel) {
+    createLevel(root,level, maxlevel);
     for(int i=0;i<root->n_children;i++){
-        createTree(root->children[i],level+1);
+        createTree(root->children[i],level+1, maxlevel);
     }
 }
 

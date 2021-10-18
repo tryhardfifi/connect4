@@ -56,6 +56,8 @@ int main()
 
 
     Node p;
+    // Node p2;
+    // Node p4;
     initializeBoard(&p);
     printBoard(p.board);
 
@@ -71,11 +73,33 @@ int main()
         }
         if (player == 2){
             initializeRoot(&p);
-            createTree(&p,1);
+            // initializeRoot(&p2);
+            // initializeRoot(&p4);
+            // copyBoard(&p, &p2);
+            // copyBoard(&p, &p4);
+
+            createTree(&p,1,7);
+            // createTree(&p2,1,2);
+            // createTree(&p4,1,4);
+
             minimax(&p,0);
+            // minimax(&p2,0);
+            // minimax(&p4,0);
+
+
             // walkTreeRec(&p,0);
-            moveComputer(&p,bestChildIndex(&p),player);
+            // if (p2.value == 100){
+            //     moveComputer(&p2,bestChildIndex(&p2),player);
+            // }
+            // else if (p4.value == 100){
+            //     moveComputer(&p4,bestChildIndex(&p4),player);
+            // }
+            // else{
+                moveComputer(&p,bestChildIndex(&p),player);
+            // }
             deleteTree(&p);
+            // deleteTree(&p2);
+            // deleteTree(&p3);
         }
        
         printBoard(p.board);
