@@ -11,7 +11,7 @@ int maximum(Node *p);
 int minimum(Node *p);
 void minimax(Node *parent, int level);
 int checkGlobalWin(char board[N][N], int p);
-int score(Node* p);
+int score(Node* p,int level);
 
 #endif
 

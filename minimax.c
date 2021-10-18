@@ -63,14 +63,14 @@ int checkGlobalWin(char board[N][N], int p){
     }
     return 0;
 }
-int score(Node* p){
+int score(Node* p, int level){
 
     if (checkGlobalWin(p->board,1)){
-        return -100;
+        return -100+level;
     }
 
     if (checkGlobalWin(p->board,2)){
-        return 100;
+        return 100-level;
     } 
 
     else{

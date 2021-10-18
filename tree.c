@@ -50,7 +50,7 @@ Node *createNode(Node *parent,int index,int level, int maxlevel) {
     copyBoard(parent,p);
     moveComputer(p,index,level%2 + 1);
     if (level<maxlevel) {
-        p->value=score(p);
+        p->value=score(p,level);
         if (p->value == 100 && p->value == -100){
             p->n_children=0;
             p->children=malloc(p->n_children * sizeof(Node *));
@@ -63,7 +63,7 @@ Node *createNode(Node *parent,int index,int level, int maxlevel) {
     else {
         p->n_children=0;
         p->children=NULL;
-        p->value=score(p);
+        p->value=score(p,level);
     }
     return p;
 }
